@@ -15,8 +15,8 @@ Feel free to check out the example script to get an idea of how to use jvTest.
 
 ### Quick run-down
 * Always initialize jvTest before testing with `jvtInitialize;`
-* When you have a group of tests to perform, use the Describe function to inform the framework that you're in a group of tests.
+* When you have a group of tests to perform, use the `Describe(string)` function to inform the framework that you're in a group of tests.
 * Wrap all your tests in a try-except block, with `Pass;` being the last line of code in the try, and `on x: Exception do Fail(x)` for the exception handler (you can expand the exception handler for tear-down as necessary).
-* You can use `Expect(boolean, string) or `ExpectEqual(Variant, Variant, string)` to test results
+* You can use `Expect(boolean, string)` or `ExpectEqual(Variant, Variant, string)` to test results
 * You can print a report of the tests performed before finalizing jvTest with `jvtPrintReport;`
 * Always finalize jvTest when done testing with `jvtFinalize;`

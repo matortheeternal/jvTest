@@ -15,7 +15,7 @@ const
   jvtEchoLog = false;
   
   { DEVELOPER CONSTANTS }
-  jvtVersion = '0.1.0';
+  jvtVersion = '0.2.0';
   jvtTabSize = 4;
   jvtPassed = '[PASSED]';
   jvtFailed = '[FAILED]';
@@ -153,12 +153,20 @@ end;
 procedure Pass;
 var
   index: Integer;
+  sStackDepth: String;
+  bFoundFailure: Boolean;
 begin
-  index := jvtFailures.IndexOf(IntToStr(jvtStack.Count));
-  if index > -1 then begin
+  bFoundFailure := false;
+  sStackDepth := IntToStr(jvtStack.Count);
+  index := jvtFailures.IndexOf(sStackDepth);
+  while index > -1 do begin
+    bFoundFailure := true;
     jvtFailures.Delete(index);
-    raise Exception.Create(''));
+    index := jvtFailures.IndexOf(sStackDepth);
   end;
+  
+  if bFoundFailure then
+    raise Exception.Create('');
   
   if jvtMaxLevel >= jvtStack.Count then begin
     jvtLogTest(jvtPassed);
